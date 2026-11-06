@@ -3,13 +3,15 @@
 سامانهٔ جامع اتصال حساب‌ها، استخراج و رصد داده، جست‌وجوی فارسی، تحلیل ترند و ارتباط کاربران، مدیریت محتوا و انتقال زمان‌بندی‌شده میان شبکه‌های اجتماعی.
 
 > مقصد انتشار: **https://srun.ir/mohtavayab**  
-> وضعیت مخزن: **S01 تکمیل شده؛ استیج بعد S02 ـ حقوق، حریم خصوصی و سیاست استفاده**
+> وضعیت مخزن: **S01 و S02 تکمیل شده‌اند؛ استیج بعد S03 ـ معماری کلان و ADRها**
 
 ## وضعیت اجرا
 
 - ✅ **S01 ـ تعریف محصول، پرسونا و KPI:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
-- ⏭️ **S02 ـ حقوق، حریم خصوصی و سیاست استفاده:** استیج بعدی
+- ✅ **S02 ـ حقوق، حریم خصوصی و سیاست استفاده:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
+- ⏭️ **S03 ـ معماری کلان و ADRها:** استیج بعدی
 - [گزارش پذیرش S01](docs/product/STAGE_S01_ACCEPTANCE_FA.md)
+- [گزارش پذیرش S02](docs/legal/STAGE_S02_ACCEPTANCE_FA.md)
 - [ثبت ماشین‌خوان پیشرفت](roadmap/progress.json)
 
 ## اندازهٔ برنامه اجرایی
@@ -33,6 +35,10 @@
 - [پرسوناها و سفرهای کاربر](docs/product/PERSONAS_JOURNEYS_FA.md)
 - [KPI و Event Taxonomy](docs/product/KPI_EVENT_TAXONOMY_FA.md)
 - [بک‌لاگ و اولویت‌بندی](docs/product/BACKLOG_PRIORITIZATION_FA.md)
+- [مبنای قانونی و رضایت](docs/legal/LEGAL_BASIS_CONSENT_FA.md)
+- [طبقه‌بندی داده و PII](docs/legal/DATA_CLASSIFICATION_PII_FA.md)
+- [سیاست Providerها](docs/legal/PROVIDER_GOVERNANCE_FA.md)
+- [نگهداری، حذف و Export](docs/legal/RETENTION_DELETION_EXPORT_FA.md)
 
 ## تصمیم‌های اصلی
 
@@ -56,6 +62,7 @@
 ```bash
 node tools/validate-roadmap.mjs
 node tools/validate-stage-s01.mjs
+node tools/validate-stage-s02.mjs
 ```
 
 این فرمان تعدادها، یکتایی شناسه‌ها، وابستگی‌ها، اندازهٔ تسک‌ها و ساختار ۴×۵ هر استیج را کنترل می‌کند.

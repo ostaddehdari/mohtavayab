@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "privacy-baseline-1.0.0",
+  "status": "engineering_baseline_requires_legal_approval",
+  "reviewed_at": "2026-11-07",
+  "review_due_at": "2026-12-07",
+  "principles": [
+    "lawfulness_fairness_transparency",
+    "purpose_limitation",
+    "data_minimisation",
+    "accuracy",
+    "storage_limitation",
+    "integrity_confidentiality",
+    "accountability"
+  ],
+  "data_classes": {
+    "C0": {"name": "public_non_personal", "ai_cloud": "allowed_by_policy", "export": "allowed"},
+    "C1": {"name": "internal", "ai_cloud": "denied_by_default", "export": "workspace_admin"},
+    "C2": {"name": "personal_or_identifiable", "ai_cloud": "consent_and_policy", "export": "scoped_and_audited"},
+    "C3": {"name": "sensitive_or_high_risk", "ai_cloud": "denied_by_default", "export": "legal_security_approval"},
+    "C4": {"name": "secret_or_credential", "ai_cloud": "prohibited", "export": "prohibited"}
+  },
+  "purposes": [
+    "PUR-AUTH", "PUR-CONNECT", "PUR-INGEST", "PUR-MONITOR", "PUR-SEARCH",
+    "PUR-AI", "PUR-PUBLISH", "PUR-ANALYTICS", "PUR-SECURITY"
+  ],
+  "required_controls": {
+    "tenant_isolation": true,
+    "purpose_binding": true,
+    "consent_versioning": true,
+    "rights_request_workflow": true,
+    "secrets_in_vault_only": true,
+    "raw_content_immutable": true,
+    "legal_review_before_production": true
+  },
+  "prohibited": [
+    "captcha_bypass",
+    "drm_bypass",
+    "credential_theft",
+    "unauthorized_private_data_access",
+    "secret_logging",
+    "secret_indexing",
+    "secret_ai_processing",
+    "policy_evasion"
+  ]
+}
+

@@ -8,7 +8,8 @@
     "roadmap:generate": "node tools/generate-roadmap.mjs",
     "roadmap:validate": "node tools/validate-roadmap.mjs",
     "stage:s01:validate": "node tools/validate-stage-s01.mjs",
-    "validate": "npm run roadmap:validate && npm run stage:s01:validate"
+    "stage:s02:validate": "node tools/validate-stage-s02.mjs",
+    "validate": "npm run roadmap:validate && npm run stage:s01:validate && npm run stage:s02:validate"
   },
   "engines": {
     "node": ">=22"

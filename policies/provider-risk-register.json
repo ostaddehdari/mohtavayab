@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_at": "2026-11-07",
+  "default_review_interval_days": 30,
+  "tiers": {
+    "A": "official_api_approved",
+    "B": "official_api_restricted",
+    "C": "unofficial_authorized_account_pilot_only",
+    "D": "browser_or_scraping_research_only",
+    "E": "prohibited"
+  },
+  "providers": [
+    {
+      "code": "youtube",
+      "tier": "A",
+      "production_state": "disabled_until_certified",
+      "terms_url": "https://developers.google.com/youtube/terms/api-services-terms-of-service",
+      "policy_url": "https://developers.google.com/youtube/terms/developer-policies",
+      "storage_rules": ["refresh_or_delete_selected_api_data_within_30_days"],
+      "deletion_rules": ["user_data_request_within_7_days"]
+    },
+    {
+      "code": "pinterest",
+      "tier": "B",
+      "production_state": "disabled_until_app_review",
+      "terms_url": "https://developers.pinterest.com/terms/",
+      "storage_rules": ["storage_only_when_terms_or_written_consent_allow"],
+      "deletion_rules": ["delete_without_undue_delay_and_no_later_than_30_days_on_trigger"]
+    },
+    {
+      "code": "meta",
+      "tier": "B",
+      "production_state": "disabled_until_app_review",
+      "terms_url": "https://developers.facebook.com/terms",
+      "storage_rules": ["purpose_limited_platform_data"],
+      "deletion_rules": ["delete_on_user_or_meta_request_or_when_no_longer_needed"]
+    },
+    {
+      "code": "x",
+      "tier": "B",
+      "production_state": "disabled_until_terms_profile_completed",
+      "terms_url": "https://t.co/devpolicy",
+      "storage_rules": ["versioned_policy_profile_required"],
+      "deletion_rules": ["provider_compliance_events_must_be_applied"]
+    },
+    {"code": "telegram", "tier": "C", "production_state": "pilot_only", "terms_url": null},
+    {"code": "instagram_private", "tier": "C", "production_state": "pilot_only", "terms_url": null},
+    {"code": "eitaa", "tier": "C", "production_state": "pilot_only", "terms_url": null},
+    {"code": "bale", "tier": "C", "production_state": "pilot_only", "terms_url": null},
+    {"code": "rubika", "tier": "D", "production_state": "research_only", "terms_url": null},
+    {"code": "soroush", "tier": "D", "production_state": "research_only", "terms_url": null}
+  ],
+  "production_gate": [
+    "terms_reviewed",
+    "minimal_scopes",
+    "consent_receipt",
+    "retention_and_deletion_profile",
+    "contract_tests",
+    "media_matrix",
+    "rate_limit_backoff",
+    "revoke_test",
+    "kill_switch",
+    "risk_owner"
+  ]
+}
+

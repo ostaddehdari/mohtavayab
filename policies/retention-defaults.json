@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "retention-defaults-1.0.0",
+  "reviewed_at": "2026-11-07",
+  "effective_rule": "minimum_of_workspace_provider_consent_and_legal_profile",
+  "entries": [
+    {"id": "RET-OTP", "data": "otp_and_challenge_value", "ttl_seconds": 600, "delete_on": "used_or_expired"},
+    {"id": "RET-BROWSER", "data": "temporary_browser_auth_volume", "ttl_seconds": 86400, "delete_on": "auth_end_or_failure"},
+    {"id": "RET-TRANSFER-CACHE", "data": "temporary_transfer_media", "ttl_seconds": 86400, "delete_on": "final_receipt"},
+    {"id": "RET-EXPORT", "data": "export_artifact", "ttl_seconds": 604800, "delete_on": "expiry"},
+    {"id": "RET-APP-LOG", "data": "application_log", "ttl_days": 30, "secret_policy": "prohibited"},
+    {"id": "RET-SEC-LOG", "data": "security_log", "ttl_days": 90, "secret_policy": "prohibited"},
+    {"id": "RET-AUDIT", "data": "audit_event", "ttl_days": 400, "legal_hold_supported": true},
+    {"id": "RET-CONTENT", "data": "content_metadata", "ttl_days": 90, "provider_override": true},
+    {"id": "RET-MEDIA", "data": "cached_media", "ttl_days": 30, "provider_override": true},
+    {"id": "RET-ANALYTICS", "data": "deidentified_aggregate", "ttl_days": 760},
+    {"id": "RET-BACKUP", "data": "encrypted_backup", "ttl_days": 35, "restore_requires_deletion_replay": true}
+  ],
+  "stores_for_deletion_propagation": [
+    "postgresql", "opensearch", "clickhouse", "neo4j", "minio_s3", "redis", "workflow_queue", "backups"
+  ],
+  "export_exclusions": [
+    "password", "otp", "access_token", "refresh_token", "session_cookie", "private_key", "internal_risk_signal"
+  ]
+}
+

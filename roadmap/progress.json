@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
   "project": "هادی / mohtavayab",
-  "updated_at": "2026-11-07T00:00:00+03:30",
-  "completed_stage_count": 1,
-  "completed_work_count": 4,
-  "completed_task_count": 20,
-  "current_stage": "S02",
+  "updated_at": "2026-11-07T00:30:00+03:30",
+  "completed_stage_count": 2,
+  "completed_work_count": 8,
+  "completed_task_count": 40,
+  "current_stage": "S03",
   "stages": {
     "S01": {
       "status": "completed",
@@ -22,6 +22,26 @@
         "S01-W02-T01", "S01-W02-T02", "S01-W02-T03", "S01-W02-T04", "S01-W02-T05",
         "S01-W03-T01", "S01-W03-T02", "S01-W03-T03", "S01-W03-T04", "S01-W03-T05",
         "S01-W04-T01", "S01-W04-T02", "S01-W04-T03", "S01-W04-T04", "S01-W04-T05"
+      ]
+    },
+    "S02": {
+      "status": "completed",
+      "completed_at": "2026-11-07",
+      "evidence": [
+        "docs/legal/LEGAL_BASIS_CONSENT_FA.md",
+        "docs/legal/DATA_CLASSIFICATION_PII_FA.md",
+        "docs/legal/PROVIDER_GOVERNANCE_FA.md",
+        "docs/legal/RETENTION_DELETION_EXPORT_FA.md",
+        "docs/legal/STAGE_S02_ACCEPTANCE_FA.md",
+        "policies/privacy-baseline.json",
+        "policies/provider-risk-register.json",
+        "policies/retention-defaults.json"
+      ],
+      "completed_tasks": [
+        "S02-W01-T01", "S02-W01-T02", "S02-W01-T03", "S02-W01-T04", "S02-W01-T05",
+        "S02-W02-T01", "S02-W02-T02", "S02-W02-T03", "S02-W02-T04", "S02-W02-T05",
+        "S02-W03-T01", "S02-W03-T02", "S02-W03-T03", "S02-W03-T04", "S02-W03-T05",
+        "S02-W04-T01", "S02-W04-T02", "S02-W04-T03", "S02-W04-T04", "S02-W04-T05"
       ]
     }
   }
