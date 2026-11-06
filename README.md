@@ -3,7 +3,14 @@
 سامانهٔ جامع اتصال حساب‌ها، استخراج و رصد داده، جست‌وجوی فارسی، تحلیل ترند و ارتباط کاربران، مدیریت محتوا و انتقال زمان‌بندی‌شده میان شبکه‌های اجتماعی.
 
 > مقصد انتشار: **https://srun.ir/mohtavayab**  
-> وضعیت مخزن: **برنامه‌ریزی و تثبیت معماری**
+> وضعیت مخزن: **S01 تکمیل شده؛ استیج بعد S02 ـ حقوق، حریم خصوصی و سیاست استفاده**
+
+## وضعیت اجرا
+
+- ✅ **S01 ـ تعریف محصول، پرسونا و KPI:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
+- ⏭️ **S02 ـ حقوق، حریم خصوصی و سیاست استفاده:** استیج بعدی
+- [گزارش پذیرش S01](docs/product/STAGE_S01_ACCEPTANCE_FA.md)
+- [ثبت ماشین‌خوان پیشرفت](roadmap/progress.json)
 
 ## اندازهٔ برنامه اجرایی
 
@@ -22,6 +29,10 @@
 - [حاکمیت تحویل و Definition of Done](docs/DELIVERY_GOVERNANCE_FA.md)
 - [استقرار روی srun.ir/mohtavayab](docs/DEPLOYMENT_SRUN_FA.md)
 - [ماتریس Providerها](docs/PROVIDER_MATRIX_FA.md)
+- [منشور محصول](docs/product/PRODUCT_CHARTER_FA.md)
+- [پرسوناها و سفرهای کاربر](docs/product/PERSONAS_JOURNEYS_FA.md)
+- [KPI و Event Taxonomy](docs/product/KPI_EVENT_TAXONOMY_FA.md)
+- [بک‌لاگ و اولویت‌بندی](docs/product/BACKLOG_PRIORITIZATION_FA.md)
 
 ## تصمیم‌های اصلی
 
@@ -44,6 +55,7 @@
 
 ```bash
 node tools/validate-roadmap.mjs
+node tools/validate-stage-s01.mjs
 ```
 
 این فرمان تعدادها، یکتایی شناسه‌ها، وابستگی‌ها، اندازهٔ تسک‌ها و ساختار ۴×۵ هر استیج را کنترل می‌کند.

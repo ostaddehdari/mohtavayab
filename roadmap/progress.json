@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "project": "هادی / mohtavayab",
+  "updated_at": "2026-11-07T00:00:00+03:30",
+  "completed_stage_count": 1,
+  "completed_work_count": 4,
+  "completed_task_count": 20,
+  "current_stage": "S02",
+  "stages": {
+    "S01": {
+      "status": "completed",
+      "completed_at": "2026-11-07",
+      "evidence": [
+        "docs/product/PRODUCT_CHARTER_FA.md",
+        "docs/product/PERSONAS_JOURNEYS_FA.md",
+        "docs/product/KPI_EVENT_TAXONOMY_FA.md",
+        "docs/product/BACKLOG_PRIORITIZATION_FA.md",
+        "docs/product/STAGE_S01_ACCEPTANCE_FA.md"
+      ],
+      "completed_tasks": [
+        "S01-W01-T01", "S01-W01-T02", "S01-W01-T03", "S01-W01-T04", "S01-W01-T05",
+        "S01-W02-T01", "S01-W02-T02", "S01-W02-T03", "S01-W02-T04", "S01-W02-T05",
+        "S01-W03-T01", "S01-W03-T02", "S01-W03-T03", "S01-W03-T04", "S01-W03-T05",
+        "S01-W04-T01", "S01-W04-T02", "S01-W04-T03", "S01-W04-T04", "S01-W04-T05"
+      ]
+    }
+  }
+}
+

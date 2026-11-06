@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "roadmap:generate": "node tools/generate-roadmap.mjs",
-    "roadmap:validate": "node tools/validate-roadmap.mjs"
+    "roadmap:validate": "node tools/validate-roadmap.mjs",
+    "stage:s01:validate": "node tools/validate-stage-s01.mjs",
+    "validate": "npm run roadmap:validate && npm run stage:s01:validate"
   },
   "engines": {
     "node": ">=22"
