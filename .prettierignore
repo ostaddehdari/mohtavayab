@@ -1,0 +1,10 @@
+.next
+coverage
+dist
+node_modules
+**/next-env.d.ts
+pnpm-lock.yaml
+roadmap/roadmap.json
+roadmap/WBS_FA.md
+uv.lock
+

@@ -1,19 +1,46 @@
 {
   "name": "mohtavayab",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "هادی / محتوا‌یاب — social content intelligence and publishing platform",
   "type": "module",
+  "packageManager": "pnpm@12.18.0",
   "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint && pnpm lint:python",
+    "lint:python": "uv run ruff check providers && uv run ruff format --check providers",
+    "format": "prettier --write . && uv run ruff format providers",
+    "format:check": "prettier --check . && uv run ruff format --check providers",
+    "typecheck": "turbo run typecheck && pnpm typecheck:python",
+    "typecheck:python": "uv run mypy providers/python-template/src",
+    "test": "turbo run test && pnpm test:python",
+    "test:python": "uv run pytest providers/python-template/tests",
+    "check:boundaries": "node tools/validate-architecture-boundaries.mjs",
+    "check:environment": "node tools/validate-environment.mjs",
+    "quality": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm check:boundaries && pnpm check:environment",
     "roadmap:generate": "node tools/generate-roadmap.mjs",
     "roadmap:validate": "node tools/validate-roadmap.mjs",
     "stage:s01:validate": "node tools/validate-stage-s01.mjs",
     "stage:s02:validate": "node tools/validate-stage-s02.mjs",
     "stage:s03:validate": "node tools/validate-stage-s03.mjs",
-    "validate": "npm run roadmap:validate && npm run stage:s01:validate && npm run stage:s02:validate && npm run stage:s03:validate"
+    "stage:s04:validate": "node tools/validate-stage-s04.mjs",
+    "validate": "pnpm roadmap:validate && pnpm stage:s01:validate && pnpm stage:s02:validate && pnpm stage:s03:validate && pnpm stage:s04:validate"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.6.6",
+    "eslint": "10.14.0",
+    "globals": "17.14.0",
+    "prettier": "3.9.10",
+    "turbo": "2.11.10",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.1",
+    "vitest": "5.1.0",
+    "yaml": "2.9.1"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=24.15.0",
+    "pnpm": ">=12.18.0"
   }
 }
-

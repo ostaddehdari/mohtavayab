@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
   "project": "هادی / mohtavayab",
-  "updated_at": "2026-11-07T04:00:00+03:30",
-  "completed_stage_count": 3,
-  "completed_work_count": 12,
-  "completed_task_count": 60,
-  "current_stage": "S04",
+  "updated_at": "2026-11-07T04:45:00+03:30",
+  "completed_stage_count": 4,
+  "completed_work_count": 16,
+  "completed_task_count": 80,
+  "current_stage": "S05",
   "stages": {
     "S01": {
       "status": "completed",
@@ -18,10 +18,26 @@
         "docs/product/STAGE_S01_ACCEPTANCE_FA.md"
       ],
       "completed_tasks": [
-        "S01-W01-T01", "S01-W01-T02", "S01-W01-T03", "S01-W01-T04", "S01-W01-T05",
-        "S01-W02-T01", "S01-W02-T02", "S01-W02-T03", "S01-W02-T04", "S01-W02-T05",
-        "S01-W03-T01", "S01-W03-T02", "S01-W03-T03", "S01-W03-T04", "S01-W03-T05",
-        "S01-W04-T01", "S01-W04-T02", "S01-W04-T03", "S01-W04-T04", "S01-W04-T05"
+        "S01-W01-T01",
+        "S01-W01-T02",
+        "S01-W01-T03",
+        "S01-W01-T04",
+        "S01-W01-T05",
+        "S01-W02-T01",
+        "S01-W02-T02",
+        "S01-W02-T03",
+        "S01-W02-T04",
+        "S01-W02-T05",
+        "S01-W03-T01",
+        "S01-W03-T02",
+        "S01-W03-T03",
+        "S01-W03-T04",
+        "S01-W03-T05",
+        "S01-W04-T01",
+        "S01-W04-T02",
+        "S01-W04-T03",
+        "S01-W04-T04",
+        "S01-W04-T05"
       ]
     },
     "S02": {
@@ -38,10 +54,26 @@
         "policies/retention-defaults.json"
       ],
       "completed_tasks": [
-        "S02-W01-T01", "S02-W01-T02", "S02-W01-T03", "S02-W01-T04", "S02-W01-T05",
-        "S02-W02-T01", "S02-W02-T02", "S02-W02-T03", "S02-W02-T04", "S02-W02-T05",
-        "S02-W03-T01", "S02-W03-T02", "S02-W03-T03", "S02-W03-T04", "S02-W03-T05",
-        "S02-W04-T01", "S02-W04-T02", "S02-W04-T03", "S02-W04-T04", "S02-W04-T05"
+        "S02-W01-T01",
+        "S02-W01-T02",
+        "S02-W01-T03",
+        "S02-W01-T04",
+        "S02-W01-T05",
+        "S02-W02-T01",
+        "S02-W02-T02",
+        "S02-W02-T03",
+        "S02-W02-T04",
+        "S02-W02-T05",
+        "S02-W03-T01",
+        "S02-W03-T02",
+        "S02-W03-T03",
+        "S02-W03-T04",
+        "S02-W03-T05",
+        "S02-W04-T01",
+        "S02-W04-T02",
+        "S02-W04-T03",
+        "S02-W04-T04",
+        "S02-W04-T05"
       ]
     },
     "S03": {
@@ -65,12 +97,72 @@
         "docs/architecture/adr/0006-transactional-outbox-projections.md"
       ],
       "completed_tasks": [
-        "S03-W01-T01", "S03-W01-T02", "S03-W01-T03", "S03-W01-T04", "S03-W01-T05",
-        "S03-W02-T01", "S03-W02-T02", "S03-W02-T03", "S03-W02-T04", "S03-W02-T05",
-        "S03-W03-T01", "S03-W03-T02", "S03-W03-T03", "S03-W03-T04", "S03-W03-T05",
-        "S03-W04-T01", "S03-W04-T02", "S03-W04-T03", "S03-W04-T04", "S03-W04-T05"
+        "S03-W01-T01",
+        "S03-W01-T02",
+        "S03-W01-T03",
+        "S03-W01-T04",
+        "S03-W01-T05",
+        "S03-W02-T01",
+        "S03-W02-T02",
+        "S03-W02-T03",
+        "S03-W02-T04",
+        "S03-W02-T05",
+        "S03-W03-T01",
+        "S03-W03-T02",
+        "S03-W03-T03",
+        "S03-W03-T04",
+        "S03-W03-T05",
+        "S03-W04-T01",
+        "S03-W04-T02",
+        "S03-W04-T03",
+        "S03-W04-T04",
+        "S03-W04-T05"
+      ]
+    },
+    "S04": {
+      "status": "completed",
+      "completed_at": "2026-11-07",
+      "evidence": [
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml",
+        "turbo.json",
+        "tsconfig.base.json",
+        "pyproject.toml",
+        "uv.lock",
+        "apps/web",
+        "apps/api",
+        "packages/contracts",
+        "providers/python-template",
+        ".devcontainer",
+        "infra/compose/compose.dev.yml",
+        ".github/workflows/verify.yml",
+        "tools/validate-architecture-boundaries.mjs",
+        "tools/validate-environment.mjs",
+        "docs/development/DEVELOPMENT_ENVIRONMENT_FA.md",
+        "docs/development/STAGE_S04_ACCEPTANCE_FA.md"
+      ],
+      "completed_tasks": [
+        "S04-W01-T01",
+        "S04-W01-T02",
+        "S04-W01-T03",
+        "S04-W01-T04",
+        "S04-W01-T05",
+        "S04-W02-T01",
+        "S04-W02-T02",
+        "S04-W02-T03",
+        "S04-W02-T04",
+        "S04-W02-T05",
+        "S04-W03-T01",
+        "S04-W03-T02",
+        "S04-W03-T03",
+        "S04-W03-T04",
+        "S04-W03-T05",
+        "S04-W04-T01",
+        "S04-W04-T02",
+        "S04-W04-T03",
+        "S04-W04-T04",
+        "S04-W04-T05"
       ]
     }
   }
 }
-

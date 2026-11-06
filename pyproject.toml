@@ -1,0 +1,39 @@
+[project]
+name = "mohtavayab-python-workspace"
+version = "0.1.0"
+requires-python = ">=3.12,<3.14"
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "mypy==1.19.1",
+  "pytest==9.0.2",
+  "ruff==0.14.13",
+]
+
+[tool.uv.workspace]
+members = ["providers/python-template"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["providers/python-template/src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "S", "RUF"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"providers/python-template/tests/**" = ["S101"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+packages = ["mohtavayab_provider_template"]
+mypy_path = "providers/python-template/src"
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers -q"
+testpaths = ["providers/python-template/tests"]
+

@@ -1,0 +1,31 @@
+{
+  "name": "Hadi / Mohtavayab",
+  "dockerComposeFile": ["../infra/compose/compose.dev.yml", "docker-compose.yml"],
+  "service": "workspace",
+  "workspaceFolder": "/workspaces/mohtavayab",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [3000, 3001, 8233, 9001],
+  "portsAttributes": {
+    "3000": { "label": "Mohtavayab Web" },
+    "3001": { "label": "Mohtavayab API" },
+    "8233": { "label": "Temporal UI" },
+    "9001": { "label": "MinIO Console" }
+  },
+  "postCreateCommand": "pnpm install --frozen-lockfile && uv sync --all-packages --frozen",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "charliermarsh.ruff",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[python]": { "editor.defaultFormatter": "charliermarsh.ruff" }
+      }
+    }
+  }
+}

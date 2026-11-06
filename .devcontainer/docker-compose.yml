@@ -1,0 +1,29 @@
+services:
+  workspace:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    command: sleep infinity
+    init: true
+    env_file:
+      - path: ../.env
+        required: false
+    environment:
+      POSTGRES_HOST: postgres
+      REDIS_URL: redis://redis:6379/0
+      MINIO_ENDPOINT: http://minio:9000
+      TEMPORAL_ADDRESS: temporal:7233
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+    volumes:
+      - ..:/workspaces/mohtavayab:cached
+      - pnpm-store:/home/node/.local/share/pnpm/store
+    networks: ['app', 'data', 'workflow', 'observability']
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+
+networks:
+  app:
+
+volumes:
+  pnpm-store:

@@ -3,27 +3,29 @@
 سامانهٔ جامع اتصال حساب‌ها، استخراج و رصد داده، جست‌وجوی فارسی، تحلیل ترند و ارتباط کاربران، مدیریت محتوا و انتقال زمان‌بندی‌شده میان شبکه‌های اجتماعی.
 
 > مقصد انتشار: **https://srun.ir/mohtavayab**  
-> وضعیت مخزن: **S01 تا S03 تکمیل شده‌اند؛ استیج بعد S04 ـ Monorepo و محیط توسعه**
+> وضعیت مخزن: **S01 تا S04 تکمیل شده‌اند؛ استیج بعد S05 ـ تحقیق UX و Design System RTL**
 
 ## وضعیت اجرا
 
 - ✅ **S01 ـ تعریف محصول، پرسونا و KPI:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
 - ✅ **S02 ـ حقوق، حریم خصوصی و سیاست استفاده:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
 - ✅ **S03 ـ معماری کلان و ADRها:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
-- ⏭️ **S04 ـ Monorepo و محیط توسعه:** استیج بعدی
+- ✅ **S04 ـ Monorepo و محیط توسعه:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
+- ⏭️ **S05 ـ تحقیق UX و Design System RTL:** استیج بعدی
 - [گزارش پذیرش S01](docs/product/STAGE_S01_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S02](docs/legal/STAGE_S02_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S03](docs/architecture/STAGE_S03_ACCEPTANCE_FA.md)
+- [گزارش پذیرش S04](docs/development/STAGE_S04_ACCEPTANCE_FA.md)
 - [ثبت ماشین‌خوان پیشرفت](roadmap/progress.json)
 
 ## اندازهٔ برنامه اجرایی
 
-| سطح | تعداد | قاعده |
-|---|---:|---|
-| ریلِیز | ۱۲ | هر ریلِیز یک خروجی محصولی قابل ارزیابی دارد |
-| استیج | ۶۰ | هر استیج دقیقاً ۴ ورک و ۲۰ تسک دارد |
-| ورک | ۲۴۰ | هر ورک دقیقاً ۵ تسک دارد |
-| تسک | ۱۲۰۰ | هر تسک ۰٫۵ تا ۲ نفر-روز و یک PR کوچک است |
+| سطح    | تعداد | قاعده                                       |
+| ------ | ----: | ------------------------------------------- |
+| ریلِیز |    ۱۲ | هر ریلِیز یک خروجی محصولی قابل ارزیابی دارد |
+| استیج  |    ۶۰ | هر استیج دقیقاً ۴ ورک و ۲۰ تسک دارد         |
+| ورک    |   ۲۴۰ | هر ورک دقیقاً ۵ تسک دارد                    |
+| تسک    |  ۱۲۰۰ | هر تسک ۰٫۵ تا ۲ نفر-روز و یک PR کوچک است    |
 
 - [نمای کلان ۶۰ استیج](roadmap/STAGE_INDEX_FA.md)
 - [WBS کامل ۱۲۰۰ تسک](roadmap/WBS_FA.md)
@@ -49,6 +51,20 @@
 - [System Model ماشین‌خوان](architecture/system-model.json)
 - [Threat Register ماشین‌خوان](architecture/threat-register.json)
 - [Decision Register و ADRها](architecture/decision-register.json)
+- [راهنمای محیط توسعه](docs/development/DEVELOPMENT_ENVIRONMENT_FA.md)
+
+## اجرای محیط توسعه
+
+در S04 نصب Production انجام نشده است؛ فقط فایل‌های اجرایی و نصب تکرارپذیر وارد مخزن شده‌اند. برای اجرای محلی:
+
+```bash
+cp .env.example .env
+bash scripts/bootstrap-dev.sh
+pnpm quality
+pnpm dev
+```
+
+صفحهٔ وب روی `http://localhost:3000/mohtavayab` و API سلامت روی `http://localhost:3001/mohtavayab/api/health` در دسترس خواهند بود.
 
 ## تصمیم‌های اصلی
 
@@ -74,6 +90,7 @@ node tools/validate-roadmap.mjs
 node tools/validate-stage-s01.mjs
 node tools/validate-stage-s02.mjs
 node tools/validate-stage-s03.mjs
+node tools/validate-stage-s04.mjs
 ```
 
 این فرمان تعدادها، یکتایی شناسه‌ها، وابستگی‌ها، اندازهٔ تسک‌ها و ساختار ۴×۵ هر استیج را کنترل می‌کند.
@@ -81,4 +98,3 @@ node tools/validate-stage-s03.mjs
 ## قاعدهٔ مهم
 
 این سامانه فقط دادهٔ عمومی یا داده‌ای را پردازش می‌کند که حساب متصل برای آن مجوز دارد. دورزدن CAPTCHA، DRM، محدودیت دسترسی یا استخراج دادهٔ خصوصی خارج از دامنهٔ محصول است.
-
