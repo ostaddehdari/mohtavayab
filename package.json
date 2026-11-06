@@ -1,0 +1,15 @@
+{
+  "name": "mohtavayab",
+  "version": "0.0.0",
+  "private": true,
+  "description": "هادی / محتوا‌یاب — social content intelligence and publishing platform",
+  "type": "module",
+  "scripts": {
+    "roadmap:generate": "node tools/generate-roadmap.mjs",
+    "roadmap:validate": "node tools/validate-roadmap.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
+

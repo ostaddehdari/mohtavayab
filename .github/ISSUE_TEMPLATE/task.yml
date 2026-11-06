@@ -1,0 +1,47 @@
+name: تسک Roadmap
+description: یک تسک کوچک متصل به WBS محتوا‌یاب
+title: "[Sxx-Wxx-Txx] "
+labels:
+  - task
+body:
+  - type: input
+    id: task_id
+    attributes:
+      label: شناسه تسک
+      description: شناسه دقیق از roadmap/roadmap.json
+      placeholder: S21-W02-T03
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: خروجی قابل تحویل
+      description: بعد از بسته‌شدن این تسک چه چیز قابل مشاهده یا اندازه‌گیری است؟
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: معیارهای پذیرش
+      placeholder: "- [ ] ..."
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Permission، خطا و ریسک
+      description: Tenant، Secret، Rate limit، Failure state و Rollback را مشخص کنید.
+    validations:
+      required: true
+  - type: checkboxes
+    id: ready
+    attributes:
+      label: Definition of Ready
+      options:
+        - label: وابستگی‌ها مشخص یا بسته شده‌اند.
+          required: true
+        - label: داده و حساب تست موجود است.
+          required: true
+        - label: تسک حداکثر دو نفر-روز است.
+          required: true
+
