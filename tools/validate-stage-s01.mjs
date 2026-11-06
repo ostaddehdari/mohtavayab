@@ -22,7 +22,8 @@ if (JSON.stringify(expectedTasks) !== JSON.stringify(completedTasks)) {
   errors.push('فهرست Taskهای تکمیل‌شده با Roadmap یکسان نیست.');
 }
 if (progress.stages?.S01?.status !== 'completed') errors.push('وضعیت S01 کامل نیست.');
-if (progress.current_stage === 'S01') errors.push('Current stage نباید روی S01 تکمیل‌شده باقی بماند.');
+const currentStageNumber = Number(progress.current_stage?.slice(1));
+if (!Number.isInteger(currentStageNumber) || currentStageNumber <= 1) errors.push('Current stage باید بعد از S01 باشد.');
 
 const requiredDocs = {
   'docs/product/PRODUCT_CHARTER_FA.md': ['## چشم‌انداز', '## خارج از دامنه', '## معیار پذیرش W01'],

@@ -18,7 +18,8 @@ if (stage?.works.length !== 4) errors.push('S02 باید چهار Work داشت�
 if (expectedTasks.length !== 20) errors.push('S02 باید بیست Task داشته باشد.');
 if (JSON.stringify(expectedTasks) !== JSON.stringify(completedTasks)) errors.push('Taskهای S02 کامل یا منطبق نیستند.');
 if (progress.stages?.S02?.status !== 'completed') errors.push('S02 completed نیست.');
-if (progress.current_stage !== 'S03') errors.push('Current stage باید S03 باشد.');
+const currentStageNumber = Number(progress.current_stage?.slice(1));
+if (!Number.isInteger(currentStageNumber) || currentStageNumber <= 2) errors.push('Current stage باید بعد از S02 باشد.');
 
 const docs = {
   'docs/legal/LEGAL_BASIS_CONSENT_FA.md': ['## Purpose Registry', '## Consent Receipt Contract', '## معیار پذیرش W01'],
@@ -53,5 +54,5 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(JSON.stringify({ok: true, stage: 'S02', works: 4, tasks: 20, next_stage: 'S03'}));
+console.log(JSON.stringify({ok: true, stage: 'S02', works: 4, tasks: 20, current_stage: progress.current_stage}));
 

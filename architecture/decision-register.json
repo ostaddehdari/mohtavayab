@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S03",
+  "decisions": [
+    {"id":"ADR-0001","status":"accepted","title":"modular-monolith-control-plane","file":"docs/architecture/adr/0001-modular-monolith-control-plane.md","owner":"backend","revisit":"service scale release or security boundary evidence"},
+    {"id":"ADR-0002","status":"accepted","title":"isolated-provider-runners","file":"docs/architecture/adr/0002-isolated-provider-runners.md","owner":"provider-engineering","revisit":"certified stateless provider pooling"},
+    {"id":"ADR-0003","status":"accepted","title":"temporal-durable-workflows","file":"docs/architecture/adr/0003-temporal-durable-workflows.md","owner":"platform-sre","revisit":"S09 recovery benchmark failure"},
+    {"id":"ADR-0004","status":"accepted","title":"polyglot-data-postgresql-truth","file":"docs/architecture/adr/0004-polyglot-data-postgresql-truth.md","owner":"backend","revisit":"store SLO or cost benchmark failure"},
+    {"id":"ADR-0005","status":"accepted","title":"nextjs-subpath-deployment","file":"docs/architecture/adr/0005-nextjs-subpath-deployment.md","owner":"frontend","revisit":"dedicated subdomain"},
+    {"id":"ADR-0006","status":"accepted","title":"transactional-outbox-projections","file":"docs/architecture/adr/0006-transactional-outbox-projections.md","owner":"backend","revisit":"CDC transport evaluation"}
+  ]
+}

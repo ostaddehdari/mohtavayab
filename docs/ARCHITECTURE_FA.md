@@ -1,5 +1,7 @@
 # معماری فنی هادی / محتوا‌یاب
 
+> جزئیات قفل‌شدهٔ استیج S03: [مرزبندی Core/Provider](architecture/CORE_PROVIDER_BOUNDARIES_FA.md)، [استقرار و شبکه](architecture/DEPLOYMENT_NETWORK_MODEL_FA.md)، [پایگاه‌های داده](architecture/DATA_STORES_DECISION_FA.md)، [Threat Model](architecture/THREAT_MODEL_FA.md) و [ADRها](architecture/adr/).
+
 ## اصل معماری
 
 سامانه یک **Modular Monolith در Core** و مجموعه‌ای از **Provider Workerهای ایزوله** است. این انتخاب، سرعت MVP را حفظ می‌کند و در عین حال وابستگی‌های ناسازگار شبکه‌ها را از هسته جدا نگه می‌دارد. Providerها حق دسترسی مستقیم به دیتابیس Core ندارند.

@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
   "project": "هادی / mohtavayab",
-  "updated_at": "2026-11-07T00:30:00+03:30",
-  "completed_stage_count": 2,
-  "completed_work_count": 8,
-  "completed_task_count": 40,
-  "current_stage": "S03",
+  "updated_at": "2026-11-07T04:00:00+03:30",
+  "completed_stage_count": 3,
+  "completed_work_count": 12,
+  "completed_task_count": 60,
+  "current_stage": "S04",
   "stages": {
     "S01": {
       "status": "completed",
@@ -42,6 +42,33 @@
         "S02-W02-T01", "S02-W02-T02", "S02-W02-T03", "S02-W02-T04", "S02-W02-T05",
         "S02-W03-T01", "S02-W03-T02", "S02-W03-T03", "S02-W03-T04", "S02-W03-T05",
         "S02-W04-T01", "S02-W04-T02", "S02-W04-T03", "S02-W04-T04", "S02-W04-T05"
+      ]
+    },
+    "S03": {
+      "status": "completed",
+      "completed_at": "2026-11-07",
+      "evidence": [
+        "docs/architecture/CORE_PROVIDER_BOUNDARIES_FA.md",
+        "docs/architecture/DEPLOYMENT_NETWORK_MODEL_FA.md",
+        "docs/architecture/DATA_STORES_DECISION_FA.md",
+        "docs/architecture/THREAT_MODEL_FA.md",
+        "docs/architecture/ARCHITECTURE_RUNBOOK_FA.md",
+        "docs/architecture/STAGE_S03_ACCEPTANCE_FA.md",
+        "architecture/system-model.json",
+        "architecture/threat-register.json",
+        "architecture/decision-register.json",
+        "docs/architecture/adr/0001-modular-monolith-control-plane.md",
+        "docs/architecture/adr/0002-isolated-provider-runners.md",
+        "docs/architecture/adr/0003-temporal-durable-workflows.md",
+        "docs/architecture/adr/0004-polyglot-data-postgresql-truth.md",
+        "docs/architecture/adr/0005-nextjs-subpath-deployment.md",
+        "docs/architecture/adr/0006-transactional-outbox-projections.md"
+      ],
+      "completed_tasks": [
+        "S03-W01-T01", "S03-W01-T02", "S03-W01-T03", "S03-W01-T04", "S03-W01-T05",
+        "S03-W02-T01", "S03-W02-T02", "S03-W02-T03", "S03-W02-T04", "S03-W02-T05",
+        "S03-W03-T01", "S03-W03-T02", "S03-W03-T03", "S03-W03-T04", "S03-W03-T05",
+        "S03-W04-T01", "S03-W04-T02", "S03-W04-T03", "S03-W04-T04", "S03-W04-T05"
       ]
     }
   }

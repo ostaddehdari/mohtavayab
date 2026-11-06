@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S03",
+  "system": "hadi-mohtavayab",
+  "public_base_url": "https://srun.ir/mohtavayab",
+  "principles": [
+    "postgresql-is-domain-source-of-truth",
+    "provider-runners-have-no-direct-data-plane-access",
+    "default-deny-between-trust-zones",
+    "raw-content-is-immutable",
+    "derived-projections-are-rebuildable",
+    "secrets-never-enter-workflow-history-logs-search-ai-or-export"
+  ],
+  "zones": [
+    {"id": "edge", "public_inbound": true, "trust": "untrusted-boundary"},
+    {"id": "application", "public_inbound": false, "trust": "trusted-control-plane"},
+    {"id": "workflow", "public_inbound": false, "trust": "trusted-orchestration"},
+    {"id": "provider-execution", "public_inbound": false, "trust": "isolated-semi-trusted"},
+    {"id": "data", "public_inbound": false, "trust": "restricted-sensitive"},
+    {"id": "observability", "public_inbound": false, "trust": "restricted-telemetry"},
+    {"id": "admin", "public_inbound": false, "trust": "privileged"},
+    {"id": "external", "public_inbound": false, "trust": "untrusted-external"}
+  ],
+  "components": [
+    {"id": "edge-gateway", "zone": "edge", "kind": "nginx-waf", "owner": "platform-sre"},
+    {"id": "web", "zone": "application", "kind": "nextjs", "owner": "frontend"},
+    {"id": "core-api", "zone": "application", "kind": "nestjs-modular-monolith", "owner": "backend"},
+    {"id": "temporal", "zone": "workflow", "kind": "durable-workflow", "owner": "platform-sre"},
+    {"id": "provider-runner", "zone": "provider-execution", "kind": "isolated-worker", "owner": "provider-engineering"},
+    {"id": "browser-runner", "zone": "provider-execution", "kind": "ephemeral-novnc-browser", "owner": "provider-engineering"},
+    {"id": "postgresql", "zone": "data", "kind": "domain-source-of-truth", "owner": "backend"},
+    {"id": "redis", "zone": "data", "kind": "ephemeral-cache-rate-limit", "owner": "platform-sre"},
+    {"id": "minio", "zone": "data", "kind": "binary-source-of-truth", "owner": "platform-sre"},
+    {"id": "opensearch", "zone": "data", "kind": "rebuildable-search-projection", "owner": "search"},
+    {"id": "clickhouse", "zone": "data", "kind": "optional-analytics-projection", "owner": "analytics"},
+    {"id": "neo4j", "zone": "data", "kind": "optional-graph-projection", "owner": "analytics"},
+    {"id": "vault", "zone": "data", "kind": "secret-manager", "owner": "security"},
+    {"id": "otel-collector", "zone": "observability", "kind": "telemetry-ingress", "owner": "platform-sre"},
+    {"id": "admin-bastion", "zone": "admin", "kind": "jit-privileged-access", "owner": "security"},
+    {"id": "social-provider", "zone": "external", "kind": "external-api-web", "owner": "external"}
+  ],
+  "connections": [
+    {"id": "C01", "from": "edge-gateway", "to": "web", "protocol": "https", "auth": "service-identity", "data_classes": ["C0", "C1", "C2"]},
+    {"id": "C02", "from": "edge-gateway", "to": "core-api", "protocol": "https-websocket", "auth": "oidc-session-csrf", "data_classes": ["C0", "C1", "C2", "C3"]},
+    {"id": "C03", "from": "core-api", "to": "postgresql", "protocol": "postgres-tls", "auth": "service-role-rls", "data_classes": ["C0", "C1", "C2", "C3"]},
+    {"id": "C04", "from": "core-api", "to": "temporal", "protocol": "grpc-tls", "auth": "namespace-service-identity", "data_classes": ["C0", "C1", "C2"]},
+    {"id": "C05", "from": "temporal", "to": "provider-runner", "protocol": "task-queue-mtls", "auth": "worker-identity", "data_classes": ["C0", "C1", "C2", "C3"]},
+    {"id": "C06", "from": "provider-runner", "to": "social-provider", "protocol": "https-allowlist", "auth": "scoped-provider-session", "data_classes": ["C0", "C1", "C2", "C3", "C4-runtime-only"]},
+    {"id": "C07", "from": "provider-runner", "to": "vault", "protocol": "https-mtls", "auth": "short-lived-grant", "data_classes": ["C4-runtime-only"]},
+    {"id": "C08", "from": "provider-runner", "to": "minio", "protocol": "https-presigned", "auth": "single-object-ttl", "data_classes": ["C1", "C2", "C3"]},
+    {"id": "C09", "from": "core-api", "to": "opensearch", "protocol": "https", "auth": "indexer-role", "data_classes": ["C0", "C1", "C2"]},
+    {"id": "C10", "from": "core-api", "to": "clickhouse", "protocol": "https", "auth": "analytics-role", "data_classes": ["C0", "C1", "C2"]},
+    {"id": "C11", "from": "core-api", "to": "neo4j", "protocol": "bolt-tls", "auth": "graph-role", "data_classes": ["C0", "C1", "C2"]},
+    {"id": "C12", "from": "core-api", "to": "minio", "protocol": "https", "auth": "object-service-role", "data_classes": ["C1", "C2", "C3"]},
+    {"id": "C13", "from": "core-api", "to": "redis", "protocol": "redis-tls", "auth": "namespaced-role", "data_classes": ["C0", "C1"]},
+    {"id": "C14", "from": "core-api", "to": "otel-collector", "protocol": "otlp-tls", "auth": "telemetry-identity", "data_classes": ["C0", "C1"]},
+    {"id": "C15", "from": "provider-runner", "to": "otel-collector", "protocol": "otlp-tls", "auth": "telemetry-identity", "data_classes": ["C0", "C1"]},
+    {"id": "C16", "from": "admin-bastion", "to": "core-api", "protocol": "https-mtls", "auth": "sso-mfa-jit", "data_classes": ["C0", "C1", "C2", "C3"]}
+  ],
+  "forbidden_connections": [
+    {"from": "provider-runner", "to": "postgresql", "reason": "provider-contract-boundary"},
+    {"from": "provider-runner", "to": "redis", "reason": "no-shared-runtime-state"},
+    {"from": "provider-runner", "to": "opensearch", "reason": "core-owned-projection"},
+    {"from": "provider-runner", "to": "clickhouse", "reason": "core-owned-projection"},
+    {"from": "provider-runner", "to": "neo4j", "reason": "core-owned-projection"},
+    {"from": "external", "to": "data", "reason": "no-public-data-plane"}
+  ],
+  "data_stores": [
+    {"id": "postgresql", "system_of_record": true, "rebuildable": false},
+    {"id": "minio", "system_of_record": true, "rebuildable": false},
+    {"id": "redis", "system_of_record": false, "rebuildable": true},
+    {"id": "opensearch", "system_of_record": false, "rebuildable": true},
+    {"id": "clickhouse", "system_of_record": false, "rebuildable": true},
+    {"id": "neo4j", "system_of_record": false, "rebuildable": true}
+  ]
+}

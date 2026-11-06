@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "stage": "S03",
+  "method": ["STRIDE", "abuse-case"],
+  "review_triggers": ["new-provider", "new-trust-boundary", "security-incident", "annual-review"],
+  "threats": [
+    {"id":"TM-01","category":"elevation-of-privilege","scenario":"cross-tenant access","severity":"critical","owner":"security","prevent":["tenant-context","postgres-rls"],"detect":["tenant-negative-tests","audit-denial"],"respond":"freeze-tenant-and-investigate","residual":"low"},
+    {"id":"TM-02","category":"information-disclosure","scenario":"provider secret theft","severity":"critical","owner":"security","prevent":["vault","short-lived-grant","c4-redaction"],"detect":["secret-use-anomaly"],"respond":"revoke-and-rotate","residual":"medium"},
+    {"id":"TM-03","category":"spoofing","scenario":"noVNC session takeover","severity":"high","owner":"provider-engineering","prevent":["mfa","one-time-token","ttl","isolated-browser"],"detect":["session-audit"],"respond":"terminate-container","residual":"medium"},
+    {"id":"TM-04","category":"spoofing","scenario":"callback or webhook replay","severity":"high","owner":"backend","prevent":["pkce-state","signature","nonce","idempotency"],"detect":["signature-failure-metric"],"respond":"rotate-signing-key","residual":"low"},
+    {"id":"TM-05","category":"elevation-of-privilege","scenario":"SSRF through media or callback URL","severity":"critical","owner":"platform-sre","prevent":["https-allowlist","dns-ip-validation","egress-policy"],"detect":["denied-egress-alert"],"respond":"quarantine-runner","residual":"low"},
+    {"id":"TM-06","category":"tampering","scenario":"malware zip bomb or MIME spoof","severity":"high","owner":"media-platform","prevent":["size-limit","signature-scan","sandbox","quarantine"],"detect":["malware-scan-event"],"respond":"purge-artifact","residual":"medium"},
+    {"id":"TM-07","category":"elevation-of-privilege","scenario":"prompt injection from extracted content","severity":"high","owner":"ai-platform","prevent":["content-as-data","tool-allowlist","no-secret-context","approval"],"detect":["ai-policy-denial"],"respond":"disable-prompt-version","residual":"medium"},
+    {"id":"TM-08","category":"repudiation","scenario":"deny publish or edit action","severity":"high","owner":"backend","prevent":["immutable-audit","signed-receipt","provenance"],"detect":["receipt-reconciliation"],"respond":"suspend-publish","residual":"low"},
+    {"id":"TM-09","category":"denial-of-service","scenario":"queue flood or rate budget exhaustion","severity":"high","owner":"platform-sre","prevent":["quota","admission-control","account-budget"],"detect":["queue-lag-alert"],"respond":"load-shed","residual":"medium"},
+    {"id":"TM-10","category":"tampering","scenario":"duplicate publish after timeout","severity":"critical","owner":"publishing","prevent":["idempotency","provider-lookup","reconcile-before-retry"],"detect":["duplicate-detector"],"respond":"manual-rollback-and-freeze","residual":"medium"},
+    {"id":"TM-11","category":"information-disclosure","scenario":"secret or PII in telemetry","severity":"critical","owner":"security","prevent":["structured-allowlist-logging","c4-redaction"],"detect":["secret-scan","canary"],"respond":"purge-with-integrity-record","residual":"low"},
+    {"id":"TM-12","category":"information-disclosure","scenario":"mass export outside policy","severity":"high","owner":"backend","prevent":["purpose-rbac","step-up-auth","expiring-link"],"detect":["export-volume-alert"],"respond":"revoke-export","residual":"medium"},
+    {"id":"TM-13","category":"tampering","scenario":"compromised dependency or image","severity":"high","owner":"platform-sre","prevent":["digest-pin","sbom","image-signature","sca"],"detect":["build-provenance-gate"],"respond":"kill-switch-and-rollback","residual":"medium"},
+    {"id":"TM-14","category":"information-disclosure","scenario":"graph re-identification or false merge","severity":"high","owner":"analytics","prevent":["evidence-confidence","least-privilege","human-undo"],"detect":["merge-audit"],"respond":"split-and-reproject","residual":"medium"},
+    {"id":"TM-15","category":"repudiation","scenario":"incomplete delete in projection or backup","severity":"high","owner":"privacy","prevent":["deletion-case","receipt","restore-replay"],"detect":["deletion-backlog-alert"],"respond":"legal-escalation-and-reconcile","residual":"medium"},
+    {"id":"TM-16","category":"spoofing","scenario":"forged provider capability","severity":"high","owner":"provider-engineering","prevent":["signed-registry","certification","version-pin"],"detect":["contract-test"],"respond":"quarantine-version","residual":"low"},
+    {"id":"TM-17","category":"elevation-of-privilege","scenario":"support or admin abuse","severity":"critical","owner":"security","prevent":["jit-access","mfa","dual-approval"],"detect":["privileged-session-audit"],"respond":"revoke-and-investigate","residual":"medium"},
+    {"id":"TM-18","category":"tampering","scenario":"stored XSS or search injection","severity":"high","owner":"frontend","prevent":["output-encoding","sanitizer","csp","query-dsl"],"detect":["csp-report"],"respond":"disable-preview-and-patch","residual":"low"}
+  ]
+}
+
