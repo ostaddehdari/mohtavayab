@@ -7,7 +7,7 @@
   "packageManager": "pnpm@12.18.0",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "node tools/dev.mjs",
     "lint": "turbo run lint && pnpm lint:python",
     "lint:python": "uv run ruff check providers && uv run ruff format --check providers",
     "format": "prettier --write . && uv run ruff format providers",
@@ -18,14 +18,16 @@
     "test:python": "uv run pytest providers/python-template/tests",
     "check:boundaries": "node tools/validate-architecture-boundaries.mjs",
     "check:environment": "node tools/validate-environment.mjs",
-    "quality": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm check:boundaries && pnpm check:environment",
+    "check:design": "node tools/validate-design-system.mjs",
+    "quality": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm check:boundaries && pnpm check:environment && pnpm check:design",
     "roadmap:generate": "node tools/generate-roadmap.mjs",
     "roadmap:validate": "node tools/validate-roadmap.mjs",
     "stage:s01:validate": "node tools/validate-stage-s01.mjs",
     "stage:s02:validate": "node tools/validate-stage-s02.mjs",
     "stage:s03:validate": "node tools/validate-stage-s03.mjs",
     "stage:s04:validate": "node tools/validate-stage-s04.mjs",
-    "validate": "pnpm roadmap:validate && pnpm stage:s01:validate && pnpm stage:s02:validate && pnpm stage:s03:validate && pnpm stage:s04:validate"
+    "stage:s05:validate": "node tools/validate-stage-s05.mjs",
+    "validate": "pnpm roadmap:validate && pnpm stage:s01:validate && pnpm stage:s02:validate && pnpm stage:s03:validate && pnpm stage:s04:validate && pnpm stage:s05:validate"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "direction": "rtl",
+  "shells": [
+    { "id": "public", "routes": ["/"], "audience": ["visitor"], "navigation": "top" },
+    {
+      "id": "workspace",
+      "routes": [
+        "/dashboard",
+        "/sources",
+        "/extract",
+        "/library",
+        "/search",
+        "/studio",
+        "/transfer",
+        "/calendar",
+        "/analytics",
+        "/graph",
+        "/accounts",
+        "/audit"
+      ],
+      "audience": ["owner", "admin", "analyst", "editor", "publisher", "viewer"],
+      "navigation": "right-sidebar"
+    },
+    {
+      "id": "platform-admin",
+      "routes": ["/admin/providers", "/admin/tenants", "/admin/health", "/admin/audit"],
+      "audience": ["platform-admin"],
+      "navigation": "right-sidebar"
+    }
+  ],
+  "workspace_groups": [
+    {
+      "id": "observe",
+      "label": "رصد و استخراج",
+      "permissions": ["dashboard.read", "sources.read", "jobs.read", "content.read", "search.use"]
+    },
+    {
+      "id": "create",
+      "label": "تولید و انتشار",
+      "permissions": ["content.transform", "publish.plan", "schedule.read"]
+    },
+    {
+      "id": "insight",
+      "label": "تحلیل و مدیریت",
+      "permissions": ["analytics.read", "graph.read", "accounts.read", "audit.read"]
+    }
+  ],
+  "responsive": {
+    "desktop": "fixed-collapsible-sidebar",
+    "tablet": "drawer",
+    "mobile": "drawer-and-stacked-content"
+  },
+  "states": ["loading", "empty", "partial", "success", "warning", "error", "forbidden", "offline"]
+}

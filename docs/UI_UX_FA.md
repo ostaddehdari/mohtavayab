@@ -3,8 +3,7 @@
 ## فناوری رابط
 
 - Next.js + React + TypeScript
-- Tailwind CSS + CSS Variables برای Tokenها
-- Radix/shadcn primitives با بازبینی کامل RTL
+- CSS Variables و پکیج مستقل `@mohtavayab/ui` برای Tokenها و اجزای پایه
 - Vazirmatn به‌صورت WOFF2 خودمیزبان
 - `@fortawesome/react-fontawesome` و پکیج‌های SVG؛ از Webfont و pseudo-element استفاده نشود
 - Motion برای Micro-interactionهای داشبورد
@@ -13,7 +12,7 @@
 
 - سایدبار در سمت راست: ۲۸۰ پیکسل در حالت باز و ۸۰ پیکسل در حالت فشرده.
 - در عرض کمتر از ۱۰۲۴ پیکسل، Sidebar به Drawer تبدیل می‌شود.
-- وضعیت جمع‌شدن در پروفایل کاربر ذخیره می‌شود، نه فقط Local Storage.
+- وضعیت جمع‌شدن در نمونهٔ S05 در Local Storage ذخیره می‌شود و در S07 به پروفایل کاربر منتقل خواهد شد.
 - Header چسبان شامل جست‌وجوی سراسری، وضعیت صف، اعلان، Workspace switcher و پروفایل است.
 - محتوای صفحه دارای Breadcrumb، عنوان، Action اصلی و Status summary ثابت است.
 
@@ -38,13 +37,13 @@
 
 ## کاربرد درست انیمیشن‌ها
 
-| ابزار | محل استفاده | محدودیت |
-|---|---|---|
-| Motion | Sidebar، Modal، List transition، Drag & Drop، Feedback | ابزار پیش‌فرض داشبورد |
-| GSAP + ScrollTrigger | Landing، Storytelling محصول و نمودارهای روایی | داخل صفحات داده‌محور عمومی نشود |
-| Lenis | فقط Landing عمومی | روی Table، Calendar و Virtual List غیرفعال |
-| Three.js | Hero، نمای اختیاری شبکه و افکت برند | Lazy، سقف FPS و fallback دوبعدی |
-| Rive | Empty state، onboarding و وضعیت اتصال | فایل کوچک و بدون وابستگی به عملکرد اصلی |
+| ابزار                | محل استفاده                                            | محدودیت                                    |
+| -------------------- | ------------------------------------------------------ | ------------------------------------------ |
+| Motion               | Sidebar، Modal، List transition، Drag & Drop، Feedback | ابزار پیش‌فرض داشبورد                      |
+| GSAP + ScrollTrigger | Landing، Storytelling محصول و نمودارهای روایی          | داخل صفحات داده‌محور عمومی نشود            |
+| Lenis                | فقط Landing عمومی                                      | روی Table، Calendar و Virtual List غیرفعال |
+| Three.js             | Hero، نمای اختیاری شبکه و افکت برند                    | Lazy، سقف FPS و fallback دوبعدی            |
+| Rive                 | Empty state، onboarding و وضعیت اتصال                  | فایل کوچک و بدون وابستگی به عملکرد اصلی    |
 
 ## قواعد کارایی و دسترس‌پذیری
 
@@ -58,4 +57,3 @@
 ## حالت‌های اجباری هر صفحه
 
 `Loading`، `Empty`، `Partial`، `Failed`، `Permission denied`، `Needs action`، `Rate limited`، `Offline` و `Stale data` باید طراحی و تست شوند.
-

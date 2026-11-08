@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "policy": "purposeful-progressive-enhancement",
+  "engines": [
+    {
+      "id": "motion",
+      "scope": "shared",
+      "lazy": false,
+      "role": "micro-interactions, sidebar, drawer",
+      "reduced_motion": "fade-only"
+    },
+    {
+      "id": "gsap-scrolltrigger",
+      "scope": "landing",
+      "lazy": true,
+      "role": "scroll narrative",
+      "reduced_motion": "disabled"
+    },
+    {
+      "id": "lenis",
+      "scope": "landing",
+      "lazy": true,
+      "role": "smooth scrolling",
+      "reduced_motion": "disabled"
+    },
+    {
+      "id": "three",
+      "scope": "landing-hero",
+      "lazy": true,
+      "role": "network visualization",
+      "reduced_motion": "static fallback",
+      "max_fps": 30,
+      "max_dpr": 1.5,
+      "pause_when_hidden": true
+    },
+    {
+      "id": "rive",
+      "scope": "landing-transfer",
+      "lazy": true,
+      "role": "interactive transfer state",
+      "reduced_motion": "static fallback",
+      "asset": "/mohtavayab/rive/transfer-demo.riv"
+    }
+  ],
+  "web_vitals": { "lcp_ms": 2500, "inp_ms": 200, "cls": 0.1 },
+  "rules": [
+    "No continuous dashboard animation",
+    "No animation required to understand content",
+    "Honor prefers-reduced-motion",
+    "Pause WebGL outside viewport or hidden tab"
+  ]
+}

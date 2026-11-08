@@ -1,0 +1,121 @@
+:root {
+  --color-ink-950: #050914;
+  --color-ink-900: #08111f;
+  --color-ink-850: #0b1626;
+  --color-ink-800: #0e1c2f;
+  --color-ink-700: #172a42;
+  --color-slate-500: #8294aa;
+  --color-slate-300: #b9c7d8;
+  --color-paper: #f4f8ff;
+  --color-cyan-500: #22d3ee;
+  --color-cyan-300: #67e8f9;
+  --color-violet-500: #8b5cf6;
+  --color-emerald-500: #34d399;
+  --color-amber-500: #fbbf24;
+  --color-rose-500: #fb7185;
+  --gradient-brand: linear-gradient(135deg, #67e8f9 0%, #8b5cf6 100%);
+  --surface-glass: rgba(10, 23, 40, 0.76);
+  --surface-raised: rgba(17, 34, 56, 0.92);
+  --border-soft: rgba(148, 163, 184, 0.16);
+  --border-active: rgba(103, 232, 249, 0.52);
+  --shadow-panel: 0 28px 80px rgba(0, 0, 0, 0.24);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --sidebar-expanded: 280px;
+  --sidebar-compact: 80px;
+  --header-height: 72px;
+  --duration-fast: 150ms;
+  --duration-normal: 260ms;
+  --ease-product: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ui-surface {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-glass);
+  box-shadow: var(--shadow-panel);
+  backdrop-filter: blur(20px);
+}
+
+.ui-badge {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  color: var(--color-slate-300);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ui-badge--positive {
+  color: #a7f3d0;
+  background: rgba(52, 211, 153, 0.1);
+}
+.ui-badge--warning {
+  color: #fde68a;
+  background: rgba(251, 191, 36, 0.1);
+}
+.ui-badge--danger {
+  color: #fecdd3;
+  background: rgba(251, 113, 133, 0.1);
+}
+.ui-badge--info {
+  color: #a5f3fc;
+  background: rgba(34, 211, 238, 0.1);
+}
+
+.ui-metric-card {
+  display: grid;
+  min-height: 148px;
+  padding: 20px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.ui-metric-card span,
+.ui-metric-card small {
+  color: var(--color-slate-500);
+}
+.ui-metric-card strong {
+  align-self: end;
+  color: var(--color-paper);
+  font-size: 2rem;
+}
+
+.ui-skeleton {
+  display: block;
+  min-height: 18px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #13243b 20%, #1b3453 50%, #13243b 80%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s linear infinite;
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-skeleton {
+    animation: none;
+  }
+}

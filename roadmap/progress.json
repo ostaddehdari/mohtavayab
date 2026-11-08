@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
   "project": "هادی / mohtavayab",
-  "updated_at": "2026-11-07T04:45:00+03:30",
-  "completed_stage_count": 4,
-  "completed_work_count": 16,
-  "completed_task_count": 80,
-  "current_stage": "S05",
+  "updated_at": "2026-11-08T15:00:00+03:30",
+  "completed_stage_count": 5,
+  "completed_work_count": 20,
+  "completed_task_count": 100,
+  "current_stage": "S06",
   "stages": {
     "S01": {
       "status": "completed",
@@ -162,6 +162,47 @@
         "S04-W04-T03",
         "S04-W04-T04",
         "S04-W04-T05"
+      ]
+    },
+    "S05": {
+      "status": "completed",
+      "completed_at": "2026-11-08",
+      "evidence": [
+        "design/information-architecture.json",
+        "design/tokens.json",
+        "design/motion-budget.json",
+        "packages/ui",
+        "apps/web/src/components/landing",
+        "apps/web/src/components/dashboard",
+        "docs/design/INFORMATION_ARCHITECTURE_FA.md",
+        "docs/design/DASHBOARD_WIREFRAMES_FA.md",
+        "docs/design/DESIGN_SYSTEM_RTL_FA.md",
+        "docs/design/ACCESSIBILITY_MOTION_RUNBOOK_FA.md",
+        "docs/design/STAGE_S05_ACCEPTANCE_FA.md",
+        "tools/validate-design-system.mjs",
+        "tools/validate-stage-s05.mjs"
+      ],
+      "completed_tasks": [
+        "S05-W01-T01",
+        "S05-W01-T02",
+        "S05-W01-T03",
+        "S05-W01-T04",
+        "S05-W01-T05",
+        "S05-W02-T01",
+        "S05-W02-T02",
+        "S05-W02-T03",
+        "S05-W02-T04",
+        "S05-W02-T05",
+        "S05-W03-T01",
+        "S05-W03-T02",
+        "S05-W03-T03",
+        "S05-W03-T04",
+        "S05-W03-T05",
+        "S05-W04-T01",
+        "S05-W04-T02",
+        "S05-W04-T03",
+        "S05-W04-T04",
+        "S05-W04-T05"
       ]
     }
   }
