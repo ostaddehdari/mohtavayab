@@ -3,7 +3,7 @@
 سامانهٔ جامع اتصال حساب‌ها، استخراج و رصد داده، جست‌وجوی فارسی، تحلیل ترند و ارتباط کاربران، مدیریت محتوا و انتقال زمان‌بندی‌شده میان شبکه‌های اجتماعی.
 
 > مقصد انتشار: **https://srun.ir/mohtavayab**  
-> وضعیت مخزن: **S01 تا S05 تکمیل شده‌اند؛ استیج بعد S06 ـ احراز هویت، نشست و MFA**
+> وضعیت مخزن: **S01 تا S06 تکمیل شده‌اند؛ استیج بعد S07 ـ Workspace، چندمستاجری و RBAC**
 
 ## وضعیت اجرا
 
@@ -12,12 +12,14 @@
 - ✅ **S03 ـ معماری کلان و ADRها:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
 - ✅ **S04 ـ Monorepo و محیط توسعه:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
 - ✅ **S05 ـ تحقیق UX و Design System RTL:** تکمیل‌شده در ۱۷ آبان ۱۴۰۵
-- ⏭️ **S06 ـ احراز هویت، نشست و MFA:** استیج بعدی
+- ✅ **S06 ـ احراز هویت، OIDC و MFA:** تکمیل‌شده در ۱۷ آبان ۱۴۰۵
+- ⏭️ **S07 ـ Workspace، چندمستاجری و RBAC:** استیج بعدی
 - [گزارش پذیرش S01](docs/product/STAGE_S01_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S02](docs/legal/STAGE_S02_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S03](docs/architecture/STAGE_S03_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S04](docs/development/STAGE_S04_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S05](docs/design/STAGE_S05_ACCEPTANCE_FA.md)
+- [گزارش پذیرش S06](docs/security/STAGE_S06_ACCEPTANCE_FA.md)
 - [ثبت ماشین‌خوان پیشرفت](roadmap/progress.json)
 
 ## اندازهٔ برنامه اجرایی
@@ -58,6 +60,10 @@
 - [وایرفریم داشبوردها](docs/design/DASHBOARD_WIREFRAMES_FA.md)
 - [Design System راست‌چین](docs/design/DESIGN_SYSTEM_RTL_FA.md)
 - [راهنمای حرکت و دسترس‌پذیری](docs/design/ACCESSIBILITY_MOTION_RUNBOOK_FA.md)
+- [معماری احراز هویت](docs/security/AUTH_ARCHITECTURE_FA.md)
+- [Runbook نشست و OIDC](docs/security/OIDC_SESSION_RUNBOOK_FA.md)
+- [Runbook MFA و بازیابی](docs/security/MFA_RECOVERY_RUNBOOK_FA.md)
+- [سیاست Device و IP](docs/security/DEVICE_IP_POLICY_FA.md)
 
 ## اجرای محیط توسعه
 
@@ -99,6 +105,8 @@ node tools/validate-stage-s03.mjs
 node tools/validate-stage-s04.mjs
 node tools/validate-stage-s05.mjs
 node tools/validate-design-system.mjs
+node tools/validate-stage-s06.mjs
+node tools/validate-identity-security.mjs
 ```
 
 این فرمان تعدادها، یکتایی شناسه‌ها، وابستگی‌ها، اندازهٔ تسک‌ها و ساختار ۴×۵ هر استیج را کنترل می‌کند.

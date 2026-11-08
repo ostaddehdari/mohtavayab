@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0.0",
   "project": "هادی / mohtavayab",
-  "updated_at": "2026-11-08T15:00:00+03:30",
-  "completed_stage_count": 5,
-  "completed_work_count": 20,
-  "completed_task_count": 100,
-  "current_stage": "S06",
+  "updated_at": "2026-11-08T16:15:00+03:30",
+  "completed_stage_count": 6,
+  "completed_work_count": 24,
+  "completed_task_count": 120,
+  "current_stage": "S07",
   "stages": {
     "S01": {
       "status": "completed",
@@ -203,6 +203,47 @@
         "S05-W04-T03",
         "S05-W04-T04",
         "S05-W04-T05"
+      ]
+    },
+    "S06": {
+      "status": "completed",
+      "completed_at": "2026-11-08",
+      "evidence": [
+        "apps/api/src/auth",
+        "apps/web/src/app/auth",
+        "apps/web/src/app/security",
+        "packages/contracts/src/index.ts",
+        "infra/postgres/migrations/0001_identity.sql",
+        "security/identity-policy.json",
+        "docs/security/AUTH_ARCHITECTURE_FA.md",
+        "docs/security/OIDC_SESSION_RUNBOOK_FA.md",
+        "docs/security/MFA_RECOVERY_RUNBOOK_FA.md",
+        "docs/security/DEVICE_IP_POLICY_FA.md",
+        "docs/security/STAGE_S06_ACCEPTANCE_FA.md",
+        "tools/validate-identity-security.mjs",
+        "tools/validate-stage-s06.mjs"
+      ],
+      "completed_tasks": [
+        "S06-W01-T01",
+        "S06-W01-T02",
+        "S06-W01-T03",
+        "S06-W01-T04",
+        "S06-W01-T05",
+        "S06-W02-T01",
+        "S06-W02-T02",
+        "S06-W02-T03",
+        "S06-W02-T04",
+        "S06-W02-T05",
+        "S06-W03-T01",
+        "S06-W03-T02",
+        "S06-W03-T03",
+        "S06-W03-T04",
+        "S06-W03-T05",
+        "S06-W04-T01",
+        "S06-W04-T02",
+        "S06-W04-T03",
+        "S06-W04-T04",
+        "S06-W04-T05"
       ]
     }
   }

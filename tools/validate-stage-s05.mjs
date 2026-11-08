@@ -17,11 +17,13 @@ if (expected.length !== 20) errors.push('S05 باید بیست Task داشته �
 if (JSON.stringify(expected) !== JSON.stringify(completed))
   errors.push('Taskهای S05 کامل یا منطبق نیستند.');
 if (progress.stages?.S05?.status !== 'completed') errors.push('S05 completed نیست.');
-if (progress.current_stage !== 'S06') errors.push('مرحله جاری باید S06 باشد.');
+const currentStageNumber = Number(progress.current_stage?.slice(1));
+if (!Number.isInteger(currentStageNumber) || currentStageNumber <= 5)
+  errors.push('مرحله جاری باید بعد از S05 باشد.');
 if (
-  progress.completed_stage_count !== 5 ||
-  progress.completed_work_count !== 20 ||
-  progress.completed_task_count !== 100
+  progress.completed_stage_count < 5 ||
+  progress.completed_work_count < 20 ||
+  progress.completed_task_count < 100
 )
   errors.push('شمارنده‌های پیشرفت S05 نادرست‌اند.');
 
@@ -49,4 +51,12 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(JSON.stringify({ ok: true, stage: 'S05', works: 4, tasks: 20, next_stage: 'S06' }));
+console.log(
+  JSON.stringify({
+    ok: true,
+    stage: 'S05',
+    works: 4,
+    tasks: 20,
+    next_stage: progress.current_stage,
+  }),
+);
