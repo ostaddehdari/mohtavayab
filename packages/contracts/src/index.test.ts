@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
   architectureContextSchema,
+  createServiceAccountRequestSchema,
+  createWorkspaceRequestSchema,
   healthReportSchema,
+  inviteMemberRequestSchema,
   loginRequestSchema,
   passwordSchema,
   registerRequestSchema,
@@ -51,6 +54,28 @@ describe('auth contracts', () => {
         email: 'user@example.com',
         password: 'anything',
         device_id: 'tiny',
+      }).success,
+    ).toBe(false);
+  });
+});
+
+describe('workspace contracts', () => {
+  it('normalizes and validates a workspace', () => {
+    expect(createWorkspaceRequestSchema.parse({ name: 'رسانه هادی', slug: 'Hadi-Media' })).toEqual({
+      name: 'رسانه هادی',
+      slug: 'hadi-media',
+    });
+  });
+
+  it('rejects owner invitations and unknown service scopes', () => {
+    expect(
+      inviteMemberRequestSchema.safeParse({ email: 'owner@example.com', role: 'owner' }).success,
+    ).toBe(false);
+    expect(
+      createServiceAccountRequestSchema.safeParse({
+        name: 'Crawler',
+        scopes: ['workspace.delete'],
+        expires_in_days: 30,
       }).success,
     ).toBe(false);
   });

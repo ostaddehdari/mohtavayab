@@ -2,7 +2,7 @@
 
 ## دامنه S06
 
-هویت کاربر در این مرحله مستقل از Workspace ساخته شده است. ارتباط کاربر با Workspace و RBAC در S07 افزوده می‌شود. API واقعی ثبت‌نام، ورود، Refresh، خروج، MFA، بازیابی، نشست‌ها و OIDC در `apps/api/src/auth` قرار دارد. ذخیره‌ساز فعلی برای آزمون و دموی S06 درون‌حافظه‌ای است؛ قرارداد PostgreSQL در `infra/postgres/migrations/0001_identity.sql` آماده شده و جایگزینی Adapter در S07 شرط استقرار Production است.
+هویت کاربر مستقل از Workspace ساخته می‌شود و S07 ارتباط آن را با Membership و RBAC برقرار کرده است. API ثبت‌نام، ورود، Refresh، خروج، MFA، بازیابی، نشست‌ها و OIDC در `apps/api/src/auth` قرار دارد. AuthStore اکنون در حالت `AUTH_STORE_DRIVER=postgres` کاربران، MFA، نشست‌ها، بازیابی و OIDC را در PostgreSQL نگهداری و هنگام آغاز بازیابی می‌کند؛ حالت درون‌حافظه‌ای فقط برای تست و توسعه سریع باقی مانده است.
 
 ## مرزهای اعتماد
 

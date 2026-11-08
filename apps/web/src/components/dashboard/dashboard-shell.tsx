@@ -103,14 +103,32 @@ export function DashboardShell() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem('mohtavayab-sidebar');
-    if (saved === 'compact') setCompact(true);
+    const controller = new AbortController();
+    void fetch('/mohtavayab/api/workspaces/preferences', {
+      credentials: 'include',
+      signal: controller.signal,
+    })
+      .then((response) => (response.ok ? response.json() : undefined))
+      .then((preference: { sidebar_mode?: string } | undefined) => {
+        if (preference?.sidebar_mode === 'compact') setCompact(true);
+      })
+      .catch(() => undefined);
+    return () => controller.abort();
   }, []);
 
   const toggleCompact = () => {
     setCompact((current) => {
       const next = !current;
-      window.localStorage.setItem('mohtavayab-sidebar', next ? 'compact' : 'expanded');
+      const csrf = document.cookie
+        .split('; ')
+        .find((item) => item.startsWith('mh_csrf='))
+        ?.split('=')[1];
+      void fetch('/mohtavayab/api/workspaces/preferences', {
+        method: 'PATCH',
+        credentials: 'include',
+        headers: { 'content-type': 'application/json', ...(csrf ? { 'x-csrf-token': csrf } : {}) },
+        body: JSON.stringify({ sidebar_mode: next ? 'compact' : 'expanded' }),
+      }).catch(() => undefined);
       return next;
     });
   };
@@ -255,14 +273,14 @@ export function DashboardShell() {
               <span className="pulse" /> صف سالم <b>۱۲</b>
             </button>
             <IconButton label="اعلان‌ها، ۳ مورد خوانده‌نشده" icon={faBell} />
-            <button type="button" className="workspace-picker">
+            <Link href="/workspace" className="workspace-picker">
               <span className="avatar avatar--workspace">هـ</span>
               <span>
                 <small>فضای کاری</small>
                 <strong>رسانه هادی</strong>
               </span>
               <FontAwesomeIcon icon={faChevronLeft} />
-            </button>
+            </Link>
           </div>
         </header>
 

@@ -46,8 +46,7 @@ export class AuthService {
       createdAt: new Date(),
       failedLoginCount: 0,
     };
-    this.store.users.set(user.id, user);
-    this.store.userIdByEmail.set(user.email, user.id);
+    await this.store.saveUser(user);
     this.audit('auth.user.registered', { user_id: user.id });
     return { id: user.id, email: user.email, display_name: user.displayName };
   }
@@ -63,7 +62,10 @@ export class AuthService {
       input.password,
     );
     if (!user || !validPassword) {
-      if (user) this.recordFailure(user);
+      if (user) {
+        this.recordFailure(user);
+        await this.store.saveUser(user);
+      }
       this.audit('auth.login.failed', { email_hash: this.crypto.tokenHash(input.email) });
       throw new UnauthorizedException('invalid_credentials');
     }
@@ -72,6 +74,7 @@ export class AuthService {
     }
     user.failedLoginCount = 0;
     delete user.lockedUntil;
+    await this.store.saveUser(user);
     this.risk.clearLoginAttempts(user.email, signals.ip);
 
     const userSessions = [...this.store.sessions.values()].filter(
@@ -117,6 +120,7 @@ export class AuthService {
       throw new UnauthorizedException('invalid_mfa');
     }
     challenge.consumedAt = new Date();
+    await this.store.saveUser(user);
     return this.createSession(
       user,
       { ip: challenge.ip, userAgent: challenge.userAgent, deviceId: challenge.deviceId },
@@ -148,12 +152,14 @@ export class AuthService {
       recoveryCodeHashes.push(await this.crypto.hashRecoveryCode(recoveryCode));
     }
     user.mfa = {
+      id: randomUUID(),
       encryptedSecret: pending.encryptedSecret,
       recoveryCodeHashes,
       enabledAt: new Date(),
     };
     delete user.pendingMfa;
-    this.store.revokeUserSessions(user.id, 'mfa_enabled');
+    await this.store.saveUser(user);
+    await this.store.revokeUserSessions(user.id, 'mfa_enabled');
     this.audit('auth.mfa.enabled', { user_id: user.id });
     return { recovery_codes: recoveryCodes };
   }
@@ -168,7 +174,7 @@ export class AuthService {
         session.previousRefreshHashes.some((hash) => this.crypto.safeEqual(hash, presentedHash)),
       );
       if (reused) {
-        this.store.revokeFamily(reused.familyId, 'refresh_reuse_detected');
+        await this.store.revokeFamily(reused.familyId, 'refresh_reuse_detected');
         this.audit('auth.refresh.reuse_detected', { family_id: reused.familyId });
         throw new UnauthorizedException('refresh_reuse_detected');
       }
@@ -178,7 +184,7 @@ export class AuthService {
       throw new UnauthorizedException('invalid_session');
     }
     if (active.deviceIdHash !== this.risk.deviceIdHash(signals.deviceId)) {
-      this.store.revokeFamily(active.familyId, 'device_binding_failed');
+      await this.store.revokeFamily(active.familyId, 'device_binding_failed');
       throw new UnauthorizedException('invalid_session');
     }
     active.previousRefreshHashes.push(active.refreshHash);
@@ -188,6 +194,7 @@ export class AuthService {
     active.ipPrefixHash = this.risk.ipPrefixHash(signals.ip);
     active.userAgentHash = this.risk.userAgentHash(signals.userAgent);
     active.lastSeenAt = new Date();
+    await this.store.saveSession(active);
     const access = await this.crypto.signAccessToken({
       userId: active.userId,
       sessionId: active.id,
@@ -241,21 +248,22 @@ export class AuthService {
       }));
   }
 
-  revokeSession(userId: string, sessionId: string): void {
+  async revokeSession(userId: string, sessionId: string): Promise<void> {
     const session = this.store.sessions.get(sessionId);
     if (session?.userId === userId && !session.revokedAt) {
       session.revokedAt = new Date();
       session.revokeReason = 'user_logout';
+      await this.store.saveSession(session);
       this.audit('auth.session.revoked', { user_id: userId, session_id: sessionId });
     }
   }
 
-  requestPasswordReset(email: string): { accepted: true; deliveryToken?: string } {
+  async requestPasswordReset(email: string): Promise<{ accepted: true; deliveryToken?: string }> {
     const user = this.store.findUserByEmail(email);
     if (!user) return { accepted: true };
     const token = this.crypto.randomToken();
     const id = randomUUID();
-    this.store.resets.set(id, {
+    await this.store.saveReset({
       id,
       userId: user.id,
       tokenHash: this.crypto.tokenHash(token),
@@ -276,7 +284,9 @@ export class AuthService {
     const user = this.requireUser(reset.userId);
     user.passwordHash = await this.crypto.hashPassword(password);
     reset.consumedAt = new Date();
-    this.store.revokeUserSessions(user.id, 'password_reset');
+    await this.store.saveUser(user);
+    await this.store.saveReset(reset);
+    await this.store.revokeUserSessions(user.id, 'password_reset');
     this.audit('auth.password.reset', { user_id: user.id });
   }
 
@@ -302,10 +312,9 @@ export class AuthService {
           createdAt: new Date(),
           failedLoginCount: 0,
         };
-        this.store.users.set(user.id, user);
-        this.store.userIdByEmail.set(user.email, user.id);
+        await this.store.saveUser(user);
       }
-      this.store.oidcUserIds.set(identityKey, user.id);
+      await this.store.saveOidcIdentity(identityKey, user.id);
     }
     return this.createSession(user, input.signals, 'oidc');
   }
@@ -332,7 +341,7 @@ export class AuthService {
       lastSeenAt: now,
       expiresAt: new Date(now.getTime() + this.config.refreshTtlSeconds * 1000),
     };
-    this.store.sessions.set(session.id, session);
+    await this.store.saveSession(session);
     const access = await this.crypto.signAccessToken({
       userId: user.id,
       sessionId: session.id,

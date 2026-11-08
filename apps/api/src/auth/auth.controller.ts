@@ -93,7 +93,7 @@ export class AuthController {
   async logout(@Req() request: Request, @Res({ passthrough: true }) response: Response) {
     this.assertCsrf(request);
     const identity = await this.identity(request);
-    this.auth.revokeSession(identity.user.id, identity.session.id);
+    await this.auth.revokeSession(identity.user.id, identity.session.id);
     this.clearSessionCookies(response);
     return { status: 'signed_out' };
   }
@@ -110,7 +110,7 @@ export class AuthController {
   async revokeSession(@Param('sessionId') sessionId: string, @Req() request: Request) {
     this.assertCsrf(request);
     const identity = await this.identity(request);
-    this.auth.revokeSession(identity.user.id, sessionId);
+    await this.auth.revokeSession(identity.user.id, sessionId);
     return { status: 'revoked' };
   }
 
@@ -135,9 +135,9 @@ export class AuthController {
   }
 
   @Post('password/recovery/request')
-  requestRecovery(@Body() body: unknown) {
+  async requestRecovery(@Body() body: unknown) {
     const input = this.parse(passwordRecoveryRequestSchema, body);
-    this.auth.requestPasswordReset(input.email);
+    await this.auth.requestPasswordReset(input.email);
     return { accepted: true };
   }
 

@@ -9,7 +9,7 @@ export type UserRecord = {
   createdAt: Date;
   failedLoginCount: number;
   lockedUntil?: Date;
-  mfa?: { encryptedSecret: string; recoveryCodeHashes: string[]; enabledAt: Date };
+  mfa?: { id: string; encryptedSecret: string; recoveryCodeHashes: string[]; enabledAt: Date };
   pendingMfa?: { encryptedSecret: string; expiresAt: Date };
 };
 

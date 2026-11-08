@@ -2,10 +2,10 @@
   "schema_version": "1.0.0",
   "project": "هادی / mohtavayab",
   "updated_at": "2026-11-08T16:15:00+03:30",
-  "completed_stage_count": 6,
-  "completed_work_count": 24,
-  "completed_task_count": 120,
-  "current_stage": "S07",
+  "completed_stage_count": 7,
+  "completed_work_count": 28,
+  "completed_task_count": 140,
+  "current_stage": "S08",
   "stages": {
     "S01": {
       "status": "completed",
@@ -244,6 +244,46 @@
         "S06-W04-T03",
         "S06-W04-T04",
         "S06-W04-T05"
+      ]
+    },
+    "S07": {
+      "status": "completed",
+      "completed_at": "2026-11-08",
+      "evidence": [
+        "apps/api/src/workspace",
+        "apps/api/src/database",
+        "apps/web/src/app/workspace",
+        "infra/postgres/migrations/0002_tenancy_rbac.sql",
+        "security/rbac-policy.json",
+        "docs/security/WORKSPACE_MEMBERSHIP_FA.md",
+        "docs/security/RBAC_MATRIX_FA.md",
+        "docs/security/TENANT_ISOLATION_FA.md",
+        "docs/security/INVITATIONS_SERVICE_ACCOUNTS_FA.md",
+        "docs/security/STAGE_S07_ACCEPTANCE_FA.md",
+        "tools/validate-tenancy-security.mjs",
+        "tools/validate-stage-s07.mjs"
+      ],
+      "completed_tasks": [
+        "S07-W01-T01",
+        "S07-W01-T02",
+        "S07-W01-T03",
+        "S07-W01-T04",
+        "S07-W01-T05",
+        "S07-W02-T01",
+        "S07-W02-T02",
+        "S07-W02-T03",
+        "S07-W02-T04",
+        "S07-W02-T05",
+        "S07-W03-T01",
+        "S07-W03-T02",
+        "S07-W03-T03",
+        "S07-W03-T04",
+        "S07-W03-T05",
+        "S07-W04-T01",
+        "S07-W04-T02",
+        "S07-W04-T03",
+        "S07-W04-T04",
+        "S07-W04-T05"
       ]
     }
   }

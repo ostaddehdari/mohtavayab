@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "default_deny": true,
+  "tenant_context_header": "x-workspace-id",
+  "roles": ["owner", "admin", "analyst", "editor", "publisher", "viewer"],
+  "sensitive_permissions": [
+    "member.manage",
+    "role.manage",
+    "service_account.manage",
+    "content.publish",
+    "audit.read"
+  ],
+  "service_accounts": {
+    "maximum_lifetime_days": 365,
+    "default_lifetime_days": 90,
+    "plain_secret_storage": false,
+    "secret_return_count": 1
+  },
+  "invitations": {
+    "lifetime_hours": 72,
+    "single_use": true,
+    "email_binding": true
+  },
+  "database": {
+    "row_level_security": true,
+    "transaction_setting": "app.workspace_id",
+    "raw_tenant_override": false
+  }
+}

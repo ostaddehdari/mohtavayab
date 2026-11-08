@@ -3,7 +3,7 @@
 سامانهٔ جامع اتصال حساب‌ها، استخراج و رصد داده، جست‌وجوی فارسی، تحلیل ترند و ارتباط کاربران، مدیریت محتوا و انتقال زمان‌بندی‌شده میان شبکه‌های اجتماعی.
 
 > مقصد انتشار: **https://srun.ir/mohtavayab**  
-> وضعیت مخزن: **S01 تا S06 تکمیل شده‌اند؛ استیج بعد S07 ـ Workspace، چندمستاجری و RBAC**
+> وضعیت مخزن: **S01 تا S07 تکمیل شده‌اند؛ استیج بعد S08 ـ Provider Registry و SDK**
 
 ## وضعیت اجرا
 
@@ -13,13 +13,15 @@
 - ✅ **S04 ـ Monorepo و محیط توسعه:** تکمیل‌شده در ۱۶ آبان ۱۴۰۵
 - ✅ **S05 ـ تحقیق UX و Design System RTL:** تکمیل‌شده در ۱۷ آبان ۱۴۰۵
 - ✅ **S06 ـ احراز هویت، OIDC و MFA:** تکمیل‌شده در ۱۷ آبان ۱۴۰۵
-- ⏭️ **S07 ـ Workspace، چندمستاجری و RBAC:** استیج بعدی
+- ✅ **S07 ـ Workspace، چندمستاجری و RBAC:** تکمیل‌شده در ۱۷ آبان ۱۴۰۵
+- ⏭️ **S08 ـ Provider Registry و SDK:** استیج بعدی
 - [گزارش پذیرش S01](docs/product/STAGE_S01_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S02](docs/legal/STAGE_S02_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S03](docs/architecture/STAGE_S03_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S04](docs/development/STAGE_S04_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S05](docs/design/STAGE_S05_ACCEPTANCE_FA.md)
 - [گزارش پذیرش S06](docs/security/STAGE_S06_ACCEPTANCE_FA.md)
+- [گزارش پذیرش S07](docs/security/STAGE_S07_ACCEPTANCE_FA.md)
 - [ثبت ماشین‌خوان پیشرفت](roadmap/progress.json)
 
 ## اندازهٔ برنامه اجرایی
@@ -64,10 +66,14 @@
 - [Runbook نشست و OIDC](docs/security/OIDC_SESSION_RUNBOOK_FA.md)
 - [Runbook MFA و بازیابی](docs/security/MFA_RECOVERY_RUNBOOK_FA.md)
 - [سیاست Device و IP](docs/security/DEVICE_IP_POLICY_FA.md)
+- [مدل Workspace و عضویت](docs/security/WORKSPACE_MEMBERSHIP_FA.md)
+- [ماتریس RBAC](docs/security/RBAC_MATRIX_FA.md)
+- [Tenant Isolation](docs/security/TENANT_ISOLATION_FA.md)
+- [دعوت و Service Account](docs/security/INVITATIONS_SERVICE_ACCOUNTS_FA.md)
 
 ## اجرای محیط توسعه
 
-تا پایان S05 نصب Production انجام نشده است؛ کد و نمونهٔ تعاملی فقط وارد مخزن شده‌اند. برای اجرای محلی:
+تا پایان S07 نصب Production انجام نشده است؛ کد و نمونهٔ تعاملی فقط وارد مخزن شده‌اند. برای اجرای محلی:
 
 ```bash
 cp .env.example .env

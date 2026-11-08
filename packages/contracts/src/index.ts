@@ -98,3 +98,82 @@ export type LoginRequest = z.infer<typeof loginRequestSchema>;
 export type MfaVerifyRequest = z.infer<typeof mfaVerifyRequestSchema>;
 export type AuthSession = z.infer<typeof authSessionSchema>;
 export type AuthOutcome = z.infer<typeof authOutcomeSchema>;
+
+export const workspaceSlugSchema = z
+  .string()
+  .trim()
+  .toLowerCase()
+  .regex(/^[a-z0-9][a-z0-9-]{2,47}$/);
+
+export const workspaceRoleSchema = z.enum([
+  'owner',
+  'admin',
+  'analyst',
+  'editor',
+  'publisher',
+  'viewer',
+]);
+
+export const workspacePermissionSchema = z.enum([
+  'workspace.read',
+  'workspace.update',
+  'member.read',
+  'member.invite',
+  'member.manage',
+  'role.read',
+  'role.manage',
+  'service_account.read',
+  'service_account.manage',
+  'source.read',
+  'source.manage',
+  'content.read',
+  'content.edit',
+  'content.publish',
+  'analytics.read',
+  'audit.read',
+]);
+
+export const createWorkspaceRequestSchema = z.object({
+  name: z.string().trim().min(2).max(80),
+  slug: workspaceSlugSchema,
+});
+
+export const inviteMemberRequestSchema = z.object({
+  email: emailSchema,
+  role: workspaceRoleSchema.exclude(['owner']),
+});
+
+export const acceptInvitationRequestSchema = z.object({ token: z.string().min(32).max(256) });
+
+export const updateMemberRoleRequestSchema = z.object({
+  role: workspaceRoleSchema.exclude(['owner']),
+});
+
+export const createServiceAccountRequestSchema = z.object({
+  name: z.string().trim().min(2).max(80),
+  scopes: z.array(workspacePermissionSchema).min(1).max(16),
+  expires_in_days: z.number().int().min(1).max(365).default(90),
+});
+
+export const workspacePreferenceRequestSchema = z.object({
+  active_workspace_id: z.uuid().optional(),
+  sidebar_mode: z.enum(['expanded', 'compact']).optional(),
+});
+
+export const workspaceErrorCodeSchema = z.enum([
+  'workspace_not_found',
+  'membership_required',
+  'permission_denied',
+  'last_owner_protected',
+  'invitation_invalid',
+  'invitation_expired',
+  'service_account_invalid',
+  'tenant_context_required',
+  'workspace_slug_exists',
+]);
+
+export type WorkspaceRole = z.infer<typeof workspaceRoleSchema>;
+export type WorkspacePermission = z.infer<typeof workspacePermissionSchema>;
+export type CreateWorkspaceRequest = z.infer<typeof createWorkspaceRequestSchema>;
+export type InviteMemberRequest = z.infer<typeof inviteMemberRequestSchema>;
+export type CreateServiceAccountRequest = z.infer<typeof createServiceAccountRequestSchema>;

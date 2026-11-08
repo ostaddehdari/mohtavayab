@@ -95,14 +95,16 @@ describe('AuthService', () => {
 
   it('keeps recovery requests enumeration-safe and invalidates sessions after reset', async () => {
     const { auth } = fixture();
-    expect(auth.requestPasswordReset('missing@example.com')).toEqual({ accepted: true });
+    await expect(auth.requestPasswordReset('missing@example.com')).resolves.toEqual({
+      accepted: true,
+    });
     const user = await auth.register({
       email: 'reset@example.com',
       password: 'Original-Secure-Password-1405',
       display_name: 'بازیابی رمز',
       accept_terms: true,
     });
-    const recovery = auth.requestPasswordReset(user.email);
+    const recovery = await auth.requestPasswordReset(user.email);
     expect(recovery.accepted).toBe(true);
     expect(recovery.deliveryToken).toBeTypeOf('string');
     await auth.confirmPasswordReset(recovery.deliveryToken ?? '', 'Changed-Secure-Password-1405');

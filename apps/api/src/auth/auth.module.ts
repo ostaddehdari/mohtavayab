@@ -10,6 +10,6 @@ import { RiskPolicyService } from './risk-policy.service.js';
 @Module({
   controllers: [AuthController],
   providers: [AuthConfig, AuthStore, CryptoService, RiskPolicyService, OidcService, AuthService],
-  exports: [AuthService],
+  exports: [AuthConfig, CryptoService, AuthService],
 })
 export class AuthModule {}
